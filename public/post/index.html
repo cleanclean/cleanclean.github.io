@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <title> - My New Hugo Site</title>
+  <link rel='canonical' href='https://cleanclean.github.io/post/' />
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta name='description' content='' />
+  <meta name='theme-color' content='black' />
+  
+
+  <meta name="generator" content="Hugo 0.56.1" />
+
+  
+
+
+
+
+
+<link rel="stylesheet" href="https://cleanclean.github.io/sass/style.min.8a1658d134a4b54730b66789206b2cf14c1b006a6de3f3fde6302f925b6e01f5.css" integrity="sha256-ihZY0TSktUcwtmeJIGss8UwbAGpt4/P95jAvkltuAfU=" media="screen">
+<link rel="stylesheet" href="https://cleanclean.github.io/syntax.min.css" integrity="" media="screen">
+
+  <meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cleanclean.github.io/post/" />
+
+<meta property="og:updated_time" content="2019-08-02T17:44:41+08:00" />
+
+  <meta itemprop="name" content="Posts">
+<meta itemprop="description" content="">
+
+
+</head>
+<body>
+
+  <header style="background-image:linear-gradient(
+      rgba(0,0,0,0.4),rgba(0,0,0,0.4)
+    ),url(&#39;https://cleanclean.github.io/images/default-sidebar.jpg&#39;)">
+
+  <div class="intro">
+    <div class="logo-container">
+      <a href="/">
+        <img src='https://cleanclean.github.io/images/edna-west.jpg' alt="Profile My New Hugo Site" class="rounded-logo">
+      </a>
+    </div>
+    <h2>Welcome, I'm John Doe</h2>
+    <h3>This is my personal website</h3>
+    <div class="menu">
+      
+
+      
+    </div>
+
+  </div>
+
+  <div class="socials">
+      
+  </div>
+
+</header>
+
+  <div class="content-wrapper">
+    
+    <main id="content" class="post">
+
+  <h1 id="title"> Posts</h1>
+  
+
+  <div class="post-list">
+    
+      <div class="post-container">
+  <h2>
+    <a href="https://cleanclean.github.io/post/myblog/">Myblog</a>
+  </h2>
+  <p>Mysql存储过程
+ SQL语句需要先编译然后执行，而存储过程（Stored Procedure）是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数（如果该存储过程带有参数）来调用执行它。存储过程是可编程的函数，在数据库中创建并保存，可以由SQL语句和控制结构组成。当想要在不同的应用程序或平台上执行相同的函数，或者封装特定功能时，存储过程是非常有用的。数据库中的存储过程可以看做是对编程中面向对象方法的模拟，它允许控制数据的访问方式。  存储过程的优点：
+ (1).增强SQL语言的功能和灵活性：存储过程可以用控制语句编写，有很强的灵活性，可以完成复杂的判断和较复杂的运算。 (2).标准组件式编程：存储过程被创建后，可以在程序中被多次调用，而不必重新编写该存储过程的SQL语句。而且数据库专业人员可以随时对存储过程进行修改，对应用程序源代码毫无影响。 (3).较快的执行速度：如果某一操作包含大量的Transaction-SQL代码或分别被多次执行，那么存储过程要比批处理的执行速度快很多。因为存储过程是预编译的。在首次运行一个存储过程时查询，优化器对其进行分析优化，并且给出最终被存储在系统表中的执行计划。而批处理的Transaction-SQL语句在每次运行时都要进行编译和优化，速度相对要慢一些。 (4).减少网络流量：针对同一个数据库对象的操作（如查询、修改），如果这一操作所涉及的Transaction-SQL语句被组织进存储过程，那么当在客户计算机上调用该存储过程时，网络中传送的只是该调用语句，从而大大减少网络流量并降低了网络负载。 (5).作为一种安全机制来充分利用：通过对执行某一存储过程的权限进行限制，能够实现对相应的数据的访问权限的限制，避免了非授权用户对数据的访问，保证了数据的安全。  存储过程创建： 1）存储过程结构
+CREATE PROCEDURE myproc(OUT s int) BEGIN SELECT COUNT(*) INTO s FROM students; //存储过程体 END
+存储过程主体以BEGIN开始，以END结尾，存储过程可以指定输入输出参数，（OUT S INT）out用以指定存储过程的输入输出类型（out类型类似与java中的方法返回值），S为变量名，int指定变量类型,out属性可以不指定； 存储过程体可以是自定义的语言，也可以是SQL语言。  2）变量的声明 存储过程中对于变量的声明主要由两种方式： 第一种方式： declare 变量名 数据类型 default 初始值（类似强类型语言变量定义）； 第二种方式： set 变量名=变量值（类似弱语言类型变量定义）； 变量可以结合SQL语言进行赋值： select * from into 变量名 from table where 查询条件；(将*号的值传给变量，但是需要注意*的查询结果是否为多个)；
+注意：建议在变量名的复制的时候采用@开头，同时变量赋值最好不要用与数据库的同名字段（在使用游标存放数据库表中的字段内容时这样做会导致数据无法进入游标）；  3）变量的作用域：
+ 存储过程的变量作用域分为全局变量（指的是整个存储过程）与局部变量，通过BEGIN---END的结构实现变量作用域的划分。 例： CREATE PROCEDURE myprocdure() BEGIN declare a int default 0; BEGIN declare a int default 5; select a; END select a; END 在新建查询中调用该存储过程及其结果： call myrodure; 结果为2个result: 5,0  4）流程控制语句： 条件语句： CREATE PROCEDURE myprocdure() BEGIN declare s int default 0; set s=5; if s&gt;0 then insert into table1 (studentName,studentId) values(&lsquo;张三&rsquo;,1001); end if; if s&gt;3 then s=s+1; else s=s-1; end if; END 循环语句： create procedure proc5() BEGIN declare a int default 1; while a&lt;=10 insert into table1(amount,price)values(a,50); set a=a+1; END WHILE END</p>
+  <div class="read-more">
+    <a alt="Myblog" href="https://cleanclean.github.io/post/myblog/" /><div class="icon">
+  <svg width="18px" height="18px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M0 28.818v80.232h44.086c5.2-.045 9.824 1.027 12.077 4.388V34.334c-2.18-3.675-6.792-5.516-12.077-5.516H0zm70.914 0c-5.285 0-9.896 1.841-12.077 5.516v79.104c2.253-3.36 6.876-4.388 12.077-4.388H115V28.818H70.914zM12.034 42.19h33.431a2.674 2.674 0 1 1 0 5.349h-33.43a2.674 2.674 0 0 1 0-5.35zm57.5 0h33.431a2.674 2.674 0 0 1 0 5.349h-33.43a2.674 2.674 0 1 1 0-5.35zm-57.5 12.035h33.431a2.674 2.674 0 1 1 0 5.349h-33.43a2.674 2.674 0 0 1 0-5.35zm57.5 0h33.431a2.674 2.674 0 0 1 0 5.349h-33.43a2.674 2.674 0 1 1 0-5.35zm-57.5 12.035h33.431a2.674 2.674 0 1 1 0 5.348h-33.43a2.674 2.674 0 0 1 0-5.348zm57.5 0h33.431a2.674 2.674 0 0 1 0 5.348h-33.43a2.674 2.674 0 1 1 0-5.348zm-57.5 12.034h33.431a2.674 2.674 0 1 1 0 5.35h-33.43a2.674 2.674 0 0 1 0-5.35zm57.5 0h33.431a2.674 2.674 0 0 1 0 5.35h-33.43a2.674 2.674 0 1 1 0-5.35zm-57.5 12.035h33.431a2.674 2.674 0 1 1 0 5.35h-33.43a2.674 2.674 0 0 1 0-5.35zm57.5 0h33.431a2.674 2.674 0 0 1 0 5.35h-33.43a2.674 2.674 0 1 1 0-5.35z"/>
+  
+  </svg>
+</div>
+
+    Read more</a>
+  </div>
+</div>
+    
+  </div>
+
+    </main>
+  </div>
+  <footer>
+    <div class="footer-wrapper">
+      <p>Made with ❤️ &mdash; Powered by <a href="https://gohugo.io/" target="_blank" rel="external">Hugo</a> and the <a href="https://github.com/bjacquemet/personal-web" target='_blank' rel="external">Personal Web</a> theme.</p>
+      <p></p>
+    </div>
+  </footer>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600|Raleway:400,400i,600" rel="stylesheet">
+  
+</body>
+</html>
